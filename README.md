@@ -1,6 +1,7 @@
 # MultiLoader Template
+### Thanks to [Jared](https://github.com/jaredlll08) and [Darkhax](https://github.com/Darkhax) for creating the project and doing the initial gradle work.
 
-This project provides a Gradle project template that can compile mods for both Forge and Fabric using a common sourceset. This project does not require any third party libraries or dependencies. If you have any questions or want to discuss the project join our [Discord](https://discord.myceliummod.network).
+This project provides a Gradle project template that can compile mods for both Forge and Fabric using a common sourceset. This project does not require any third party libraries or dependencies.
 
 ## Getting Started
 
