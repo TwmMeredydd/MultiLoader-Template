@@ -23,8 +23,8 @@ minecraft {
             workingDirectory(file("run"))
             ideaModule("${rootProject.name}.${project.name}.main")
             taskName("Client")
-            property("mixin.env.remapRefMap", "true")
-            property("mixin.env.refMapRemappingFile", "$projectDir/build/createSrgToMcp/output.srg")
+            property("forge.logging.markers", "REGISTRIES")
+            property("forge.logging.console.level", "debug")
             mods {
                 create(modId) {
                     source(sourceSets["main"])
@@ -37,8 +37,8 @@ minecraft {
             workingDirectory(file("run"))
             ideaModule("${rootProject.name}.${project.name}.main")
             taskName("Server")
-            property("mixin.env.remapRefMap", "true")
-            property("mixin.env.refMapRemappingFile", "$projectDir/build/createSrgToMcp/output.srg")
+            property("forge.logging.markers", "REGISTRIES")
+            property("forge.logging.console.level", "debug")
             mods {
                 create(modId) {
                     source(sourceSets["main"])
@@ -52,8 +52,8 @@ minecraft {
             ideaModule("${rootProject.name}.${project.name}.main")
             args("--mod", modId, "--all", "--output", file("src/generated/resources"), "--existing", file("src/main/resources"))
             taskName("Data")
-            property("mixin.env.remapRefMap", "true")
-            property("mixin.env.refMapRemappingFile", "$projectDir/build/createSrgToMcp/output.srg")
+            property("forge.logging.markers", "REGISTRIES")
+            property("forge.logging.console.level", "debug")
             mods {
                 create(modId) {
                     source(sourceSets["main"])
