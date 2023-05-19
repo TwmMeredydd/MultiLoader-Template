@@ -1,5 +1,5 @@
-val mod_name: String by project
-val minecraft_version: String by project
+val modName: String by project
+val minecraftVersion: String by project
 
 plugins {
     java
@@ -7,10 +7,10 @@ plugins {
     id("org.spongepowered.gradle.vanilla") version("0.2.1-SNAPSHOT")
 }
 
-val archivesBaseName: String = "${mod_name}-xplat-${minecraft_version}"
+val archivesBaseName: String = "${modName}-xplat-${minecraftVersion}"
 
 minecraft {
-    version(minecraft_version)
+    version(minecraftVersion)
     runs {
         client("Xplat Client") {
             workingDirectory(file("run"))

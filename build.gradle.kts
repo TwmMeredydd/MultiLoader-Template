@@ -1,9 +1,9 @@
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
-val mod_name: String by project
-val mod_author: String by project
-val minecraft_version: String by project
+val modName: String by project
+val modAuthor: String by project
+val minecraftVersion: String by project
 
 subprojects {
     apply(plugin = "java")
@@ -18,27 +18,27 @@ subprojects {
 
     tasks.named<Jar>("jar") {
         from(rootProject.file("LICENSE")) {
-            rename { "${it}_${mod_name}" }
+            rename { "${it}_${modName}" }
         }
 
         manifest {
             attributes(mapOf(
-                "Specification-Title" to mod_name,
-                "Specification-Vendor" to mod_author,
+                "Specification-Title" to modName,
+                "Specification-Vendor" to modAuthor,
                 "Specification-Version" to archiveVersion,
                 "Implementation-Title" to name,
-                "Implementation-Vendor" to mod_author,
+                "Implementation-Vendor" to modAuthor,
                 "Implementation-Timestamp" to ZonedDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ")),
                 "Timestamp" to System.currentTimeMillis(),
                 "Built-On-Java" to "${System.getProperty("java.vm.version")} (${System.getProperty("java.vm.vendor")})",
-                "Built-On-Minecraft" to minecraft_version
+                "Built-On-Minecraft" to minecraftVersion
             ))
         }
     }
 
     tasks.named<Jar>("sourcesJar") {
         from(rootProject.file("LICENSE")) {
-            rename { "${it}_${mod_name}" }
+            rename { "${it}_${modName}" }
         }
     }
 

@@ -1,7 +1,7 @@
-val mod_name: String by project
-val mod_id: String by project
-val minecraft_version: String by project
-val forge_version: String by project
+val modName: String by project
+val modId: String by project
+val minecraftVersion: String by project
+val forgeVersion: String by project
 
 plugins {
     java
@@ -10,12 +10,12 @@ plugins {
     id("net.minecraftforge.gradle") version("5.1.+")
 }
 
-val archivesBaseName: String = "${mod_name}-forge-${minecraft_version}"
+val archivesBaseName: String = "${modName}-forge-${minecraftVersion}"
 
 minecraft {
     mappings(mapOf(
         "channel" to "official",
-        "version" to minecraft_version
+        "version" to minecraftVersion
     ))
 
     runs {
@@ -26,7 +26,7 @@ minecraft {
             property("mixin.env.remapRefMap", "true")
             property("mixin.env.refMapRemappingFile", "$projectDir/build/createSrgToMcp/output.srg")
             mods {
-                create(mod_id) {
+                create(modId) {
                     source(sourceSets["main"])
                     source(project(":Xplat").sourceSets["main"])
                 }
@@ -40,7 +40,7 @@ minecraft {
             property("mixin.env.remapRefMap", "true")
             property("mixin.env.refMapRemappingFile", "$projectDir/build/createSrgToMcp/output.srg")
             mods {
-                create(mod_id) {
+                create(modId) {
                     source(sourceSets["main"])
                     source(project(":Xplat").sourceSets["main"])
                 }
@@ -50,12 +50,12 @@ minecraft {
         create("data") {
             workingDirectory(file("run"))
             ideaModule("${rootProject.name}.${project.name}.main")
-            args("--mod", mod_id, "--all", "--output", file("src/generated/resources"), "--existing", file("src/main/resources"))
+            args("--mod", modId, "--all", "--output", file("src/generated/resources"), "--existing", file("src/main/resources"))
             taskName("Data")
             property("mixin.env.remapRefMap", "true")
             property("mixin.env.refMapRemappingFile", "$projectDir/build/createSrgToMcp/output.srg")
             mods {
-                create(mod_id) {
+                create(modId) {
                     source(sourceSets["main"])
                     source(project(":Xplat").sourceSets["main"])
                 }
@@ -67,7 +67,7 @@ minecraft {
 sourceSets["main"].resources.srcDir("src/generated/resources")
 
 dependencies {
-    minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    minecraft("net.minecraftforge:forge:${minecraftVersion}-${forgeVersion}")
     compileOnly(project(":Xplat"))
 }
 

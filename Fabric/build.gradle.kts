@@ -1,7 +1,7 @@
-val mod_name: String by project
-val minecraft_version: String by project
-val fabric_loader_version: String by project
-val fabric_version: String by project
+val modName: String by project
+val minecraftVersion: String by project
+val fabricLoaderVersion: String by project
+val fabricVersion: String by project
 
 plugins {
     idea
@@ -9,13 +9,13 @@ plugins {
     id("fabric-loom") version("1.0-SNAPSHOT")
 }
 
-val archivesBaseName: String = "${mod_name}-fabric-${minecraft_version}"
+val archivesBaseName: String = "${modName}-fabric-${minecraftVersion}"
 
 dependencies {
-    minecraft("com.mojang:minecraft:${minecraft_version}")
+    minecraft("com.mojang:minecraft:${minecraftVersion}")
     mappings(loom.officialMojangMappings())
-    modImplementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
+    modImplementation("net.fabricmc:fabric-loader:${fabricLoaderVersion}")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${fabricVersion}")
     implementation(group = "com.google.code.findbugs", name = "jsr305", version = "3.0.1")
     implementation(project(":Xplat"))
 }
