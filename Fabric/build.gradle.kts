@@ -6,7 +6,7 @@ val fabricVersion: String by project
 plugins {
     idea
     `maven-publish`
-    id("fabric-loom") version("1.0-SNAPSHOT")
+    id("fabric-loom") version("1.1-SNAPSHOT")
 }
 
 val archivesBaseName: String = "${modName}-fabric-${minecraftVersion}"
