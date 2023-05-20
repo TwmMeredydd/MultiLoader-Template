@@ -4,13 +4,14 @@ import java.time.format.DateTimeFormatter
 val modName: String by project
 val modAuthor: String by project
 val minecraftVersion: String by project
+val modJavaVersion: Int by project
 
 subprojects {
     apply(plugin = "java")
 
     configure<JavaPluginExtension> {
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(17))
+            languageVersion.set(JavaLanguageVersion.of(modJavaVersion))
         }
         withSourcesJar()
         withJavadocJar()
@@ -52,7 +53,7 @@ subprojects {
 
     tasks.withType(JavaCompile::class).configureEach {
         options.encoding = "UTF-8"
-        options.release.set(17)
+        options.release.set(modJavaVersion)
     }
 
     // Disables Gradle's custom module metadata from being published to maven. The
