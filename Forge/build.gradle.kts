@@ -19,17 +19,10 @@ minecraft {
     ))
 
     runs {
-        create("client") {
-            taskName("Client")
-        }
-
-        create("server") {
-            taskName("Server")
-        }
-
+        create("client")
+        create("server")
         create("data") {
             args("--mod", modId, "--all", "--output", file("src/generated/resources"), "--existing", file("src/main/resources"))
-            taskName("Data")
         }
 
         configureEach {

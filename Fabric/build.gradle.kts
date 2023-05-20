@@ -24,16 +24,15 @@ dependencies {
 loom {
     runs {
         named("client") {
-            client()
-            configName = "Fabric Client"
+            name("Fabric Client")
         }
         named("server") {
-            server()
-            configName = "Fabric Server"
+            name("Fabric Server")
         }
+
         create("data") {
             inherit(runs["client"])
-            configName = "Fabric Data"
+            name("Fabric Datagen")
             vmArgs(
                 "-Dfabric-api-datagen",
                 "-Dfabric-api.datagen.output-dir=${file("src/generated/resources")}",
