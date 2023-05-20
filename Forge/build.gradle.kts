@@ -20,38 +20,21 @@ minecraft {
 
     runs {
         create("client") {
-            workingDirectory(file("run"))
-            ideaModule("${rootProject.name}.${project.name}.main")
             taskName("Client")
-            property("forge.logging.markers", "REGISTRIES")
-            property("forge.logging.console.level", "debug")
-            mods {
-                create(modId) {
-                    source(sourceSets["main"])
-                    source(project(":Xplat").sourceSets["main"])
-                }
-            }
         }
 
         create("server") {
-            workingDirectory(file("run"))
-            ideaModule("${rootProject.name}.${project.name}.main")
             taskName("Server")
-            property("forge.logging.markers", "REGISTRIES")
-            property("forge.logging.console.level", "debug")
-            mods {
-                create(modId) {
-                    source(sourceSets["main"])
-                    source(project(":Xplat").sourceSets["main"])
-                }
-            }
         }
 
         create("data") {
-            workingDirectory(file("run"))
-            ideaModule("${rootProject.name}.${project.name}.main")
             args("--mod", modId, "--all", "--output", file("src/generated/resources"), "--existing", file("src/main/resources"))
             taskName("Data")
+        }
+
+        configureEach {
+            workingDirectory(file("run"))
+            ideaModule("${rootProject.name}.${project.name}.main")
             property("forge.logging.markers", "REGISTRIES")
             property("forge.logging.console.level", "debug")
             mods {
