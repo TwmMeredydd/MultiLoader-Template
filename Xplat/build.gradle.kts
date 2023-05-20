@@ -26,14 +26,6 @@ dependencies {
     implementation(group = "com.google.code.findbugs", name = "jsr305", version = "3.0.1")
 }
 
-tasks.processResources {
-    val buildProps = project.properties.toMap()
-
-    filesMatching("pack.mcmeta") {
-        expand(buildProps)
-    }
-}
-
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
