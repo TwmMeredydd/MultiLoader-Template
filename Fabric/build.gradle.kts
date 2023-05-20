@@ -26,14 +26,10 @@ loom {
         named("client") {
             client()
             configName = "Fabric Client"
-            ideConfigGenerated(true)
-            runDir("run")
         }
         named("server") {
             server()
             configName = "Fabric Server"
-            ideConfigGenerated(true)
-            runDir("run")
         }
         create("data") {
             inherit(runs["client"])
@@ -43,8 +39,11 @@ loom {
                 "-Dfabric-api.datagen.output-dir=${file("src/generated/resources")}",
                 "-Dfabric-api.datagen.modid=${modId}"
             )
+        }
 
-            runDir("build/datagen")
+        configureEach {
+            ideConfigGenerated(true)
+            runDir("run")
         }
     }
 }
