@@ -1,4 +1,5 @@
 val modName: String by project
+val modId: String by project
 val minecraftVersion: String by project
 val fabricLoaderVersion: String by project
 val fabricVersion: String by project
@@ -34,8 +35,21 @@ loom {
             ideConfigGenerated(true)
             runDir("run")
         }
+        create("data") {
+            inherit(runs["client"])
+            configName = "Fabric Data"
+            vmArgs(
+                "-Dfabric-api-datagen",
+                "-Dfabric-api.datagen.output-dir=${file("src/generated/resources")}",
+                "-Dfabric-api.datagen.modid=${modId}"
+            )
+
+            runDir("build/datagen")
+        }
     }
 }
+
+sourceSets["main"].resources.srcDir("src/generated/resources")
 
 tasks {
     processResources {
