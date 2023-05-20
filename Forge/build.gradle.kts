@@ -1,5 +1,6 @@
 val modName: String by project
 val modId: String by project
+val modVersion: String by project
 val minecraftVersion: String by project
 val forgeVersion: String by project
 
@@ -10,7 +11,11 @@ plugins {
     id("net.minecraftforge.gradle") version("5.1.+")
 }
 
-val archivesBaseName: String = "${modName}-forge-${minecraftVersion}"
+val version: String = "${minecraftVersion}-${modVersion}"
+
+base {
+    archivesName.set("$modId-forge-$version")
+}
 
 minecraft {
     mappings(mapOf(
@@ -65,7 +70,7 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             groupId = group.toString()
-            artifactId = archivesBaseName
+            artifactId = "${modId}_forge"
             version = project.version.toString()
             artifact(tasks.jar)
         }
