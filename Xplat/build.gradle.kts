@@ -1,5 +1,7 @@
 val modName: String by project
+val modId: String by project
 val minecraftVersion: String by project
+val modVersion: String by project
 
 plugins {
     java
@@ -7,7 +9,11 @@ plugins {
     id("org.spongepowered.gradle.vanilla") version("0.2.1-SNAPSHOT")
 }
 
-val archivesBaseName: String = "${modName}-xplat-${minecraftVersion}"
+val version: String = "${minecraftVersion}-${modVersion}"
+
+base {
+    archivesName.set("${rootProject.name}-xplat-$version")
+}
 
 minecraft {
     version(minecraftVersion)
@@ -29,9 +35,9 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
-            groupId = group.toString()
-            artifactId = archivesBaseName
-            version = this.version
+            groupId = project.group.toString()
+            artifactId = "${modId}_xplat"
+            version = project.version.toString()
             from(components["java"])
         }
     }

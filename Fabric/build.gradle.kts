@@ -1,5 +1,6 @@
 val modName: String by project
 val modId: String by project
+val modVersion: String by project
 val minecraftVersion: String by project
 val fabricLoaderVersion: String by project
 val fabricVersion: String by project
@@ -10,7 +11,11 @@ plugins {
     id("fabric-loom") version("1.1-SNAPSHOT")
 }
 
-val archivesBaseName: String = "${modName}-fabric-${minecraftVersion}"
+val version: String = "${minecraftVersion}-${modVersion}"
+
+base {
+    archivesName.set("${rootProject.name}-fabric-$version")
+}
 
 dependencies {
     minecraft("com.mojang:minecraft:${minecraftVersion}")
@@ -68,7 +73,7 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             groupId = group.toString()
-            artifactId = archivesBaseName
+            artifactId = "${modId}_fabric"
             version = project.version.toString()
             from(components["java"])
         }
